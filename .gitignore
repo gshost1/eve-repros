@@ -1,0 +1,7 @@
+node_modules/
+.output/
+.swc/
+.nitro/
+.eve/
+.workflow-data/
+.DS_Store

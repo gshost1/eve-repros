@@ -1,0 +1,32 @@
+trial 1/30: kill=yes delay=17.2ms run=wrun_01M6AVKDP2A1EZ0M1TCACQFV3V status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=192 awaitedReinvokes=96 1302ms
+trial 2/30: kill=yes delay=19.4ms run=wrun_01M6AVKEY6B7E7XV1BASQD1R18 status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 30875ms
+trial 3/30: kill=yes delay=4.1ms run=wrun_01M6AVMD52SS78Q93ASPMEP2SW status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 842ms
+trial 4/30: kill=yes delay=0.4ms run=wrun_01M6AVMDXM6K898NESMPHPS6CY status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 751ms
+trial 5/30: kill=yes delay=5.5ms run=wrun_01M6AVMEN8AK3C6EGSKR7B6853 status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 758ms
+trial 6/30: kill=yes delay=8.7ms run=wrun_01M6AVMFBKMXKY6NAN3TRS8D28 status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 717ms
+trial 7/30: kill=yes delay=25.0ms run=wrun_01M6AVMG3SFZM4R7162TFR6QMW status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=0 780ms
+trial 8/30: kill=yes delay=28.9ms run=wrun_01M6AVMGW8ZFKVY28XDNHX8TFJ status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=0 782ms
+trial 9/30: kill=yes delay=20.2ms run=wrun_01M6AVMHMV9J2EZG989VJJHSKH status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=192 awaitedReinvokes=96 1277ms
+trial 10/30: kill=yes delay=16.8ms run=wrun_01M6AVMJX0QYQ9DQWCRQ2KQEXB status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 31374ms
+trial 11/30: kill=yes delay=14.8ms run=wrun_01M6AVNHHHY0XR3RAB63NQB41C status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 782ms
+trial 12/30: kill=yes delay=15.2ms run=wrun_01M6AVNJA26EYC7VB5ZTDVYX5K status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 31365ms
+trial 13/30: kill=yes delay=13.7ms run=wrun_01M6AVPH006XDV7T44ETCNGFGH status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 831ms
+trial 14/30: kill=yes delay=19.7ms run=wrun_01M6AVPHRJ3BFEZ6KMAJ4P45BS status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=0 772ms
+trial 15/30: kill=yes delay=23.8ms run=wrun_01M6AVPJGT0WZ1XADQ0KM0EZ89 status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=0 777ms
+trial 16/30: kill=yes delay=20.1ms run=wrun_01M6AVPK98BR5G1P0EXAMCKVJ9 status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=0 781ms
+trial 17/30: kill=yes delay=10.4ms run=wrun_01M6AVPM04Q6QJPR9YQ9JJ26WX status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 710ms
+trial 18/30: kill=yes delay=22.2ms run=wrun_01M6AVPMR0BPD3AM4JFWR9ACKP status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=0 816ms
+trial 19/30: kill=yes delay=12.6ms run=wrun_01M6AVPNMVC9MS5DB9C7PR2YEZ status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 870ms
+trial 20/30: kill=yes delay=23.7ms run=wrun_01M6AVPPD2DQFMXVZ5CX8E7GHZ status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=0 791ms
+trial 21/30: kill=yes delay=5.3ms run=wrun_01M6AVPQ5ZMP2GT1XJ297CAY4Y status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 761ms
+trial 22/30: kill=yes delay=17.9ms run=wrun_01M6AVPQW8XPQH4AKWG05RJ5PN status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 707ms
+trial 23/30: kill=yes delay=2.8ms run=wrun_01M6AVPRM4WG3FNTDQZEG45X4W status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 756ms
+trial 24/30: kill=yes delay=19.5ms run=wrun_01M6AVPSBYB3816Q5ZZHZ8WVPQ status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=96 awaitedReinvokes=96 1280ms
+trial 25/30: kill=yes delay=2.7ms run=wrun_01M6AVPTM4AWTF982NG1DFDA4K status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 780ms
+trial 26/30: kill=yes delay=7.6ms run=wrun_01M6AVPVCTX4V7VG8FSK52YN0G status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 776ms
+trial 27/30: kill=yes delay=9.3ms run=wrun_01M6AVPW534TZ49FS44BMG4CAC status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 781ms
+trial 28/30: kill=yes delay=22.6ms run=wrun_01M6AVPWXTREXZVJVEM4JAFM33 status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=0 782ms
+trial 29/30: kill=yes delay=20.1ms run=wrun_01M6AVPXPBKSK7DXEMCD8ENHV4 status=completed attempts="" hookAlreadyExists=0 awaitedReinvokes=1 791ms
+trial 30/30: kill=yes delay=21.9ms run=wrun_01M6AVPYDK1P9YPHXE4HTXSNDF status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 32358ms
+
+RESULT: 6/30 MAX_DELIVERIES_EXCEEDED, 24 completed, 0 other, 0 where the kill did not land (mode=random)

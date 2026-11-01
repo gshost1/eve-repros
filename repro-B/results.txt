@@ -1,0 +1,13 @@
+Bug B repro results (macOS 26.6.1 arm64, Node 26.7.0; workflow 5.2.3, @workflow/core 5.2.3, @workflow/world-local 5.1.2, nitro 3.0.260903-beta)
+
+Full Workflow app (repro.mjs), no eve:
+  kill point (kill-point.mjs preload):         10/10 MAX_DELIVERIES_EXCEEDED   (results-killpoint.txt)
+  random SIGKILL 0-30 ms after run_created:    6/30 MAX_DELIVERIES_EXCEEDED, 24 completed   (results-random.txt)
+  (earlier scratch runs: kill point 10/10; random calibration 2/8)
+
+World level (world-repro.mjs), world-local only:
+  injected kill point:                         1/1, the hook can never be created (49/49 retries EntityConflictError)
+  random timer SIGKILL 2-41 ms:                5/30 (7 kills landed mid-write; 23 children finished first)
+
+eve evidence:
+  instabox-claims.txt: in all 4 InstaBox run-3 B hits, every claim is at evnt_003, and each missing hook's claim points at a slot held by another hook.

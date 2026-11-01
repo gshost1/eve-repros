@@ -1,0 +1,24 @@
+✓ Compiled workflows in 568ms (17 steps, 1 workflow)
+MISSING_CODE_SPLITTING_GROUP_DEBUG_NAME
+`output.codeSplitting.groups[0].name` is a function. Set `output.codeSplitting.groups[0].debugName` so the bundler timing report can identify this group.
+ℹ Tracing dependencies:
+- cbor-extract (2.2.2)
+- node-gyp-build-optional-packages (5.1.1)
+- detect-libc (2.1.2)
+- @cbor-extract/cbor-extract-darwin-arm64 (2.2.2)
+✔ Traced 4 dependencies (9 files) in 32ms.
+ℹ Ensure your production environment matches the builder OS and architecture (darwin-arm64) to avoid native module issues.
+ℹ Generated .output/nitro.json
+Σ Total size: 6.35 MB (1.71 MB gzip)
+trial 1/10: kill=yes run=wrun_01M6AVGQAXTRTM5JXWN6HQGHSB status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1569ms
+trial 2/10: kill=yes run=wrun_01M6AVGRK24NG1CWF8GZM7X7GZ status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1284ms
+trial 3/10: kill=yes run=wrun_01M6AVGSVF6GGE726RDACVQ6MD status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1271ms
+trial 4/10: kill=yes run=wrun_01M6AVGV1P7ESGVKH4RV3HM90K status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1217ms
+trial 5/10: kill=yes run=wrun_01M6AVGW9GKJM140D7WGHQY93T status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1276ms
+trial 6/10: kill=yes run=wrun_01M6AVGXHGNG0AY2X9TPXQNYYE status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1804ms
+trial 7/10: kill=yes run=wrun_01M6AVGZA51NAS807FRS086XJJ status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1293ms
+trial 8/10: kill=yes run=wrun_01M6AVH0H0394D3XH36KVHVPZ0 status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1217ms
+trial 9/10: kill=yes run=wrun_01M6AVH1RSW3HKAXWN9HB6P9EB status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1286ms
+trial 10/10: kill=yes run=wrun_01M6AVH3132P4XWGBZNGAEFC0V status=failed errorCode=MAX_DELIVERIES_EXCEEDED attempts="exceeded max deliveries (49/48)" hookAlreadyExists=288 awaitedReinvokes=96 1281ms
+
+RESULT: 10/10 MAX_DELIVERIES_EXCEEDED, 0 completed, 0 other, 0 where the kill did not land (mode=kill-point)
