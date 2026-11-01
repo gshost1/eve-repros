@@ -10,4 +10,4 @@ World level (world-repro.mjs), world-local only:
   random timer SIGKILL 2-41 ms:                5/30 (7 kills landed mid-write; 23 children finished first)
 
 eve evidence:
-  instabox-claims.txt: in all 4 InstaBox run-3 B hits, every claim is at evnt_003, and each missing hook's claim points at a slot held by another hook.
+  instabox-claims.txt: in all 4 failed eve runs with saved world state, every claim is at evnt_003, and each missing hook's claim points at a slot held by another hook.

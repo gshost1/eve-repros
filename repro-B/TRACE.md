@@ -1,13 +1,13 @@
 # Bug B: trace
 
-**Conclusion.** The root cause is in **world-local's `hook_created` write**, not in core replay. The earlier triage reading in `triage.md` §6 / (b), "core replay never folds the hook's own pre-crash `hook_created`", is **wrong**:
+**Conclusion.** The root cause is in **world-local's `hook_created` write**, not in core replay. It is not that core replay fails to fold a hook's own pre-crash `hook_created`:
 
 - The event in slot 003 belongs to a **different** hook than the one being retried.
 - The retried hook has **no** `hook_created` anywhere in the log. Core's "Hook already exists, continuing" is acting on a false "already exists" from world-local.
 
 Core's 0 s re-invoke loop turns that into `MAX_DELIVERIES_EXCEEDED`.
 
-Reproduced without eve: `repro-B/repro.mjs` uses plain Workflow SDK 5.2.3 with world-local 5.1.2. It fails 10/10 with an injected kill point, which only picks the moment of the SIGKILL, and 6/30 with a plain random SIGKILL and no injection. The InstaBox world states confirm the same on-disk shape in all 4 B hits (`repro-B/instabox-claims.txt`).
+Reproduced without eve: `repro.mjs` uses plain Workflow SDK 5.2.3 with world-local 5.1.2. It fails 10/10 with an injected kill point, which only picks the moment of the SIGKILL, and 6/30 with a plain random SIGKILL and no injection. The saved world states of 4 failed eve runs show the same on-disk shape (`instabox-claims.txt`).
 
 Code refs are to tag `@workflow/core@5.2.3` = `@workflow/world-local@5.1.2` = commit `d9bcbf62d39a61eac070ca67111b90c425e04d05` (both tags point to it). The same code is on `main` at `44d7c76` (2026-10-30); I did not run the repro against `main`.
 
@@ -30,7 +30,7 @@ Side note: `hook_received` already avoids this. Its resume claim is pinned only 
 
 ## Event log before and after the crash (debug-logged eve replay, seed 4863)
 
-`keep-HIT-A-1/server-2.log` (laptop), child `workflowEntry` `wrun_01M6959H7X8P1VWM4ANKTXWSEV`. That run kept only logs, not its world state, so the slot contents below come from the replay's event processing order. The InstaBox hits further down have the files themselves.
+Debug-logged eve replay (`DEBUG='*' WORKFLOW_DEBUG=1 WORKFLOW_LOG_LEVEL=debug`), child `workflowEntry` `wrun_01M6959H7X8P1VWM4ANKTXWSEV`. That run kept only logs, not its world state, so the slot contents below come from the replay's event processing order. The 4 runs further down have the files themselves.
 
 | slot | event | written |
 |---|---|---|
@@ -49,9 +49,9 @@ What each pass does:
 - **Totals**: 97 × "Hook already exists" (all `evnt_…003`), 96 × `hasAwaitedHookCreation: true`, 48 × in-process continue for `hook_…G6`. It ends at `Workflow handler exceeded max deliveries (49/48)` → `MAX_DELIVERIES_EXCEEDED`.
 - **Why this is G6 and not a fold miss on G4**: only **one** hook write fails per pass. If G4, G5 or G2 were unfolded, they would be retried too. The event count never grows past 11, so G6's `hook_created` is never written. 0 "Replay divergence" and 0 "Replay could not consume event" lines: replay consumed every event it was given.
 
-## On-disk confirmation (InstaBox run 3, world state kept)
+## On-disk confirmation (4 fuzzer runs with world state kept)
 
-`repro-B/claims.py` over `instabox-run3/runs/<seed>/eve-state/.workflow-data`; full output in `repro-B/instabox-claims.txt`. In each of the 4 B hits, the failed child `workflowEntry` has **every** hook token claim at `eventId = …003`. Each hook missing from the log has a claim pointing at a slot that a different hook holds:
+`claims.py` over each run's `.workflow-data`; full output in `instabox-claims.txt`. In each of the 4 B hits, the failed child `workflowEntry` has **every** hook token claim at `eventId = …003`. Each hook missing from the log has a claim pointing at a slot that a different hook holds:
 
 | seed | slot 003 holds | claims at 003 with no `hook_created` | other evidence |
 |---|---|---|---|
@@ -64,15 +64,15 @@ All 4 end `MAX_DELIVERIES_EXCEEDED` (49/48).
 
 ## Repro results
 
-- **Full Workflow repro, no eve** (`repro-B/repro.mjs`: Nitro + `workflow@5.2.3`, world-local 5.1.2). The workflow is 4 × `createHook` plus `await Promise.all(hooks.map(h => h.getConflict()))`.
+- **Full Workflow repro, no eve** (`repro.mjs`: Nitro + `workflow@5.2.3`, world-local 5.1.2). The workflow is 4 × `createHook` plus `await Promise.all(hooks.map(h => h.getConflict()))`.
   - Kill point (`kill-point.mjs`, preloaded only in the first server): SIGKILL right after one hook's `hook_created` link while another hook's claim records the same slot. The restarted server recovers the run.
   - **10/10** `failed` / `MAX_DELIVERIES_EXCEEDED` (49/48), each 1.2–1.4 s after restart.
   - Each trial logs 288 "Hook already exists" (3 wedged hooks × 96) and 96 `hasAwaitedHookCreation: true`.
   - The post-kill disk state matches 4001982: four staged `.tmp` files at 003, one published.
-- **World-level repro** (`repro-B/world-repro.mjs`: `@workflow/world-local@5.1.2` only; 4 concurrent `hook_created` writes, as core issues them).
+- **World-level repro** (`world-repro.mjs`: `@workflow/world-local@5.1.2` only; 4 concurrent `hook_created` writes, as core issues them).
   - Injected kill point: 1/1 wedged, and all 49 retries fail with the exact eve log string.
   - **No injection, timer SIGKILL at 2–41 ms: 5/30 trials** left a hook that can never be created. 7 of the 30 kills landed before the writes finished, and 5 of those 7 wedged. The other 23 children finished first.
-- **Full app, no injection** (`node repro.mjs --n 30 --random`: plain SIGKILL at a random 0–30 ms after `run_created` lands on disk): **6/30** `MAX_DELIVERIES_EXCEEDED`, 24/30 completed (`repro-B/results-random.txt`). The hits cluster at 15–22 ms, which is the hook-write window.
+- **Full app, no injection** (`node repro.mjs --n 30 --random`: plain SIGKILL at a random 0–30 ms after `run_created` lands on disk): **6/30** `MAX_DELIVERIES_EXCEEDED`, 24/30 completed (`results-random.txt`). The hits cluster at 15–22 ms, which is the hook-write window.
 
 ## Fix hypothesis (untested)
 
